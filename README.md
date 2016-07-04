@@ -14,10 +14,11 @@ Usage
  2. Auto load in **config.php** `$config['libraries'] = array('ciam');` or use on demand with $this->load->library('ciam');
  3. Go to **application/config/ciam.php** and specify CSS/JS files for each one of your widgets/features (examples in the file)
  4. For CSS use in your view: `<?=$this->ciam->css(array('welcome, 'messages'));?>`
- 5. For JS, use in view:  `<?=$this->ciam->js(array('welcome, 'messages'));?>`
+ 5. For JS, use in view:  `<?=$this->ciam->js(array('jquery, 'mobileux'));?>`
 
 >Or use the returned value:
 >`$styles = $this->ciam->css(array('welcome, 'messages'));`
+>You can use either arrays or strings to specify which batch of assets to load.
 
 
 
