@@ -48,49 +48,47 @@ class ciam{
     
     function css($assets_keys){
         
-        $css_links = '';    //HTML for the links
+        return $this->generate_html('css', $assets_keys);
         
-        if(is_array($assets_keys)):
-        //For each widget
-        foreach ($assets_keys as $css_asset_list):
-            $css_assets = $this->amc_css[$css_asset_list];
-            foreach ($css_assets as $css_link):
-                $css_links .= link_tag($this->assets_folder . $css_link);      //Building link HTML
-            endforeach;
-        endforeach;
-        else:
-            if(array_key_exists($assets_keys, $this->amc_css)):
-                foreach ($this->amc_css[$assets_keys] as $s_css):
-                    $css_links .= link_tag($this->assets_folder . $s_css);
-                endforeach;
-            endif;
-        endif;
-        return $css_links;
     }
     
     
     //[js][homepage] = array('source1.js', 'source2.js')
     function js($assets_keys){      //e.g. array('homepage', 'article')
         
-        $js_links = '';     //HTML for the links
+        return $this->generate_html('js', $assets_keys);
+        
+    }
+    
+    private function generate_html($link_type, $assets_keys){ //Generate HTML for js or css link type
+        $links = '';     //HTML for the links
         
         if(is_array($assets_keys)):
-        //For each widget
-        foreach ($assets_keys as $js_asset_list):
-            $js_assets = $this->amc_js[$js_asset_list];
-            foreach ($js_assets as $js_link):
-                $js_links .= '<script type="text/javascript" src="' . base_url($this->assets_folder . $js_link) . '"></script>';      //Building link HTML
+            //For each widget
+            foreach ($assets_keys as $asset_list):
+                $assets = ($link_type == 'css')? $this->amc_css[$asset_list]:$this->amc_js[$asset_list];
+                foreach ($assets as $link):
+                    if($link_type == 'js'):
+                        $links .= '<script type="text/javascript" src="' . base_url($this->assets_folder . $link) . '"></script>';      //Building link HTML
+                    elseif($link_type == 'css'):
+                        $links .= link_tag($this->assets_folder . $link);
+                    endif;
+                endforeach;
             endforeach;
-        endforeach;
         else:
-            if(array_key_exists($assets_keys, $this->amc_js)):
-                foreach ($this->amc_js[$assets_keys] as $s_js):
-                    $js_links .= '<script type="text/javascript" src="' . base_url($this->assets_folder . $s_js) . '"></script>' . PHP_EOL;
+            $single_asset = ($link_type == 'css')? $this->amc_css : $this->amc_js;
+            if(array_key_exists($assets_keys, $single_asset)):
+                foreach ($single_asset[$assets_keys] as $s_link):
+                    if($link_type == 'js'):
+                        $links .= '<script type="text/javascript" src="' . base_url($this->assets_folder . $s_link) . '"></script>' . PHP_EOL;
+                    elseif($link_type == 'css'):
+                        $links .= link_tag($this->assets_folder . $s_link);
+                    endif;
                 endforeach;
             endif;
         endif;
         
-        return $js_links;
+        return $links;
     }
     
     
