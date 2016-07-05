@@ -23,11 +23,11 @@ $config['css']['message'] = array(
     you will get the following echo:
 
 
-        <link href="http://evenme.local/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="http://evenme.local/assets/css/welcome.css" rel="stylesheet" type="text/css" />
-        <link href="http://evenme.local/assets/css/welcome_theme.css" rel="stylesheet" type="text/css" />
-        <link href="http://evenme.local/assets/css/post.css" rel="stylesheet" type="text/css" />
-        <link href="http://evenme.local/assets/css/message_style.css" rel="stylesheet" type="text/css" />
+        <link href="http://localhost/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://localhost/assets/css/welcome.css" rel="stylesheet" type="text/css" />
+        <link href="http://localhost/assets/css/welcome_theme.css" rel="stylesheet" type="text/css" />
+        <link href="http://localhost/assets/css/post.css" rel="stylesheet" type="text/css" />
+        <link href="http://localhost/assets/css/message_style.css" rel="stylesheet" type="text/css" />
 */
 
 /*
